@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>第一节:状态值的学习 · GitBook</title>
+        <title>第六节:connect 实现store的数据 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="2-state.html" />
+    <link rel="next" href="7-state.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="5-state.html" />
     
 
     </head>
@@ -200,7 +200,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.3.1" data-path="1-state.html">
+        <li class="chapter " data-level="1.3.1" data-path="1-state.html">
             
                 <a href="1-state.html">
             
@@ -265,7 +265,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.6" data-path="6-state.html">
+        <li class="chapter active" data-level="1.3.6" data-path="6-state.html">
             
                 <a href="6-state.html">
             
@@ -326,7 +326,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >第一节:状态值的学习</a>
+        <a href=".." >第六节:connect 实现store的数据</a>
     </h1>
 </div>
 
@@ -341,82 +341,39 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>&#x73B0;&#x5728;&#x5B9E;&#x73B0;&#x8868;&#x5355;&#x63D0;&#x4EA4;&#x4E8B;&#x4EF6;&#xFF0C;&#x6DFB;&#x52A0;handeleSubmit</p>
-<pre><code> &lt;form ref=&quot;commentForm&quot; onSubmit={this.handleSubmit}   className=&quot;comment-form&quot;&gt;
-          &lt;input ref={(value) =&gt; { this.textInput = value} } type=&quot;text&quot; className=&quot;input&quot; /&gt;
-          &lt;button type=&quot;submit&quot; className=&quot;submit-btn&quot; &gt;&#x63D0;&#x4EA4;&lt;/button&gt;
-        &lt;/form&gt;
-</code></pre><p>&#x540D;&#x8BCD;&#x89E3;&#x91CA;&#xFF1A;
--submit &quot;&#x63D0;&#x4EA4;&quot;
--handle &quot;&#x5904;&#x7406;&quot;
--form   &quot;&#x8868;&#x5355;&quot;</p>
-<p>&#x7136;&#x540E;&#x5B9A;&#x4E49; handleSubmit</p>
-<pre><code class="lang-js">handleSubmit=()=&gt;{
-
-}
+                                <h2 id="connect-&#x7684;&#x7528;&#x6CD5;">connect &#x7684;&#x7528;&#x6CD5;</h2>
+<p>&#x524D;&#x8A00;&#xFF1A;&#x9996;&#x5148;&#x4E00;&#x70B9;&#x660E;&#x786E;&#x786E;&#x5B9A;&#xFF1A;&#x7684; react &#x7EC4;&#x4EF6;&#x548C; redux store &#x4E4B;&#x95F4;&#x662F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5173;&#x7CFB;&#x7684;&#x3002;&#x8FD9;&#x4E00;&#x8282;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x628A;&#x4ED6;&#x4EEC;&#x4E8C;&#x8005; connect &#x8D77;&#x6765;&#x3002;</p>
+<p>&#x8FDE;&#x63A5;&#x4E8C;&#x8005;&#xFF0C;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x4E13;&#x95E8;&#x7684;&#x5E93;&#xFF0C;&#x53EB;&#x505A; react-redux&#xFF0C;&#x8FD9;&#x4E2A;&#x662F; React &#x5B98;&#x65B9;&#x7684; Redux &#x5BF9; React &#x7684;&#x7ED1;&#x5B9A;&#x3002;</p>
+<p>1.&#x9996;&#x5148;&#x5B89;&#x88C5;&#x5305;</p>
+<pre><code class="lang-js">npm i --save react-redux
 </code></pre>
-<p>&#x7531;&#x4E8E;&#x4F7F;&#x7528;&#x4E86;&#x80D6;&#x7BAD;&#x5934;&#x7684;&#x8BED;&#x6CD5;&#x6240;&#x4EE5;&#x4E0D;&#x7528;bind(this)</p>
-<pre><code class="lang-js">&#x963B;&#x6B62;&#x8DF3;&#x8F6C;(e.preventDefault())
-
-&gt;&#x5728;&#x8868;&#x5355;&#x63D0;&#x4EA4;&#x7684;&#x65F6;&#x5019;&#x963B;&#x6B62;&#x8DF3;&#x8F6C;
-
-
-
-###&#x62FF;&#x5230;input &#x7684;&#x8F93;&#x5165;
-
-&#x9996;&#x5148;&#x6DFB;&#x52A0; ref &#x5982;&#x4E0B;&#xFF1A;
+<p>2.&#x5177;&#x4F53;&#x7684;&#x4F7F;&#x7528;&#x7684;&#x4E3B;&#x8981;&#x6D89;&#x53CA;&#x4E24;&#x4E2A;&#x63A5;&#x53E3; Provider &#x548C; connect &#xFF0C;&#x7136;&#x540E;&#x5728;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5BFC;&#x51FA;&#x7EC4;&#x4EF6;&#x7684;&#x5730;&#x65B9;&#x6362;&#x6210;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(PostBody=&#x300B;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684;&#x540D;&#x5B57;);
 </code></pre>
-<p><input ref="{value=">this.comment=value} type=&quot;text&quot; className=&quot;input&quot; /&gt;</p>
-<pre><code class="lang-js">
-&#x4E0A;&#x9762;&#x7684;ref &#x610F;&#x601D;&#x662F;&#x6307;&#x9488;&#x4E5F;&#x5C31;&#x662F;
+<p>3.&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;
+-connect &#x8FDE;&#x63A5; store &#x548C;&#x7EC4;&#x4EF6;
+-mapStateToProps&#xFF1A;&#x628A; store &#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF08;&#x4E00;&#x90E8;&#x5206;&#xFF09;&#x6620;&#x5C04;&#x4E3A;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684; props
+map &#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x6620;&#x5C04;&#x201D;
+-State &#x6307;&#x7684;&#x662F; store &#x72B6;&#x6001;&#x6811;&#xFF08; State Tree &#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; store &#x7684;&#x5B9E;&#x9645;&#x6570;&#x636E;
+-Porps &#x5C31;&#x662F;&#x5C5E;&#x6027;
+-Store &#x4E2D;&#x6570;&#x636E;&#x5F88;&#x591A;&#xFF0C;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x7684;&#x53EA;&#x662F;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x90A3;&#x4E48;&#x9009;&#x53D6;&#x5DE5;&#x4F5C;&#x662F;&#x5728; mapStateToProps &#x4E2D;&#x5B8C;&#x6210;&#x7684;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> mapStateToProps = (state) =&gt; ({
+  comments: state
+});
 </code></pre>
-<p>value=&gt;this.comment=value</p>
-<pre><code class="lang-js">
-&#x662F;&#x4E00;&#x4E2A;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#xFF0C;&#x5176;&#x4E2D;value &#x6307;&#x4EE3;&#x5F53;&#x524D;input &#x8FD9;&#x4E2A;&#x8282;&#x70B9;&#x5BF9;&#x5E94;&#x7684;<span class="hljs-built_in">Object</span> &#x7136;&#x540E;
-</code></pre>
-<p>this.comment=value</p>
-<pre><code class="lang-js">
-&#x5C31;&#x662F;&#x628A;input &#x5BF9;&#x8C61;&#x8D4B;&#x7ED9;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x6574;&#x4E2A;<span class="hljs-class"><span class="hljs-keyword">class</span>&#x4E4B;&#x5185;&#xFF0C;&#x53EF;&#x968F;&#x5904;&#x8BBF;&#x95EE;
+<p>4.connect &#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;PostBody &#x4E4B;&#x4E2D;&#x5C31;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;this.props.comments</p>
+<p>5.&#x53EA;&#x6709; connect &#x4E0D;&#x80FD;&#x5DE5;&#x4F5C;&#xFF08;&#x56E0;&#x4E3A;&#x627E;&#x4E0D;&#x7740; store&#xFF09;&#xFF0C;&#x56E0;&#x4E3A; connect &#x7684;&#x751F;&#x6548;&#x8303;&#x56F4;&#x662F;&#x7531; <provider> &#x7EC4;&#x4EF6;&#x51B3;&#x5B9A;&#x7684;( Provider &#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x53EA;&#x6709;&#x88AB; Provider &#x5305;&#x62EC;&#x8D77;&#x6765;&#x7684;&#x7EC4;&#x4EF6;&#x4E2D;&#x624D;&#x80FD;&#x627E;&#x5F97;&#x7740; store&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x624D;&#x80FD;&#x4F7F;&#x7528; connect)&#xFF0C;&#x6240;&#x4EE5;&#x4EE3;&#x7801;&#x4E2D;&#x8FD8;&#x9700;&#x8981;&#x6DFB;&#x52A0;</provider></p>
+<pre><code class="lang-js">&lt;Provider store={store}&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;top  clearfix&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">PostBody</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;bottom clearfix&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">CommentBox</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
 </span></code></pre>
-<p> handleSubmit =(e)=&gt;{
-         e.preventDefault()
-        console.log(this.comment.value)</p>
-<pre><code>    &gt;&#x6253;&#x5370;&#x4F60;&#x5728;input&#x8F93;&#x5165;&#x7684;&#x5185;&#x5BB9;
-
-    &#x8F93;&#x51FA;console.log(this.comment)
-    &gt;&#x6253;&#x5370;&lt;input ref={value=&gt;this.comment=value} type=&quot;text&quot; className=&quot;input&quot; /&gt;
-
-
-}
-</code></pre><pre><code class="lang-js">
-&#x5728;&#x8FD9;&#xFF0C;&#x5982;&#x4F55;&#x4ECE;form &#x7684;&#x8F93;&#x5165;&#x6846;&#x62FF;&#x5230;&#x5B57;&#x7B26;&#x4E32; &#x8FD9;&#x4E2A;&#x6280;&#x5DE7;&#x6211;&#x4EEC;&#x638C;&#x63E1;&#x4E86;&#x3002;&#x8FD9;&#x4E2A;&#x4E00;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F; &#xFF0C;&#x53E6;&#x5916;&#x901A;&#x8FC7;&quot;&#x53D7;&#x63A7;&#x7EC4;&#x4EF6;&quot;&#x7684;&#x5F62;&#x5F0F;&#x6765;&#x53D6;&#x503C;
-
-
-###state
-
-
-
-&#x5148;&#x6765;&#x8BA8;&#x8BBA; render()&#x7684;&#x672C;&#x6027;&#xFF1A;
-
-&gt;&#x4E00;&#x65E6;state &#x53D8;&#xFF0C; render()&#x81EA;&#x52A8;&#x88AB;&#x91CD;&#x65B0;&#x6267;&#x884C;
-
-&#x6240;&#x4EE5;&#xFF0C;&#x5C4A;&#x4E0A;&#x7684;&#x7531;&#x4E24;&#x6761;&#x8BC4;&#x8BBA;&#x53D8;&#x6210;&#x591A;&#x4E2A;&#x8BC4;&#x8BBA;
-
-
-&#x6700;&#x540E; &#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x63D0;&#x4EA4;&#x5B57;&#x7B26;&#x4E32; &#x5427;input &#x7684;&#x503C;&#x6E05;&#x7A7A; input &#x7684;&#x5B57;&#x7B26;&#x4E32;&#x3002;
-
-handleSubmit &#x6DFB;&#x52A0;
-</code></pre>
-<p>this.comment.value=&quot; &quot;</p>
-<pre><code class="lang-js">
-
-&#x4F46;&#x662F;&#x4E00;&#x4E2A;form&#x7684;input &#x8F83;&#x591A;&#xFF0C;&#x90A3;&#x4E48;&#x4E0B;&#x9762;&#x7684;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x65B9;&#x5F0F;
-</code></pre>
-<p>handleSubmit=()=&gt;{
-    this.myForm.reset()
-}</p>
-<pre><code class="lang-js">&lt;form ref={value=&gt;<span class="hljs-keyword">this</span>.myForm =value} onSubmit ={<span class="hljs-keyword">this</span>.handleSubmit} /&gt;
-</code></pre>
 
                                 
                                 </section>
@@ -444,12 +401,12 @@ handleSubmit &#x6DFB;&#x52A0;
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 第二章:redux">
+                <a href="5-state.html" class="navigation navigation-prev " aria-label="Previous page: 第五节:redux store 数据">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="2-state.html" class="navigation navigation-next " aria-label="Next page: 第二节:Redux 入门教程">
+                <a href="7-state.html" class="navigation navigation-next " aria-label="Next page: 第七节:实现多数据的点赞">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -460,7 +417,7 @@ handleSubmit &#x6DFB;&#x52A0;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第一节:状态值的学习","level":"1.3.1","depth":2,"next":{"title":"第二节:Redux 入门教程","level":"1.3.2","depth":2,"path":"redux/2-state.md","ref":"./redux/2-state.md","articles":[]},"previous":{"title":"第二章:redux","level":"1.3","depth":1,"path":"redux/index.md","ref":"./redux/index.md","articles":[{"title":"第一节:状态值的学习","level":"1.3.1","depth":2,"path":"redux/1-state.md","ref":"./redux/1-state.md","articles":[]},{"title":"第二节:Redux 入门教程","level":"1.3.2","depth":2,"path":"redux/2-state.md","ref":"./redux/2-state.md","articles":[]},{"title":"第三节:state 在内部的使用","level":"1.3.3","depth":2,"path":"redux/3-state.md","ref":"./redux/3-state.md","articles":[]},{"title":"第四节:不用 Redux 如何实现组件间通信","level":"1.3.4","depth":2,"path":"redux/4-state.md","ref":"./redux/4-state.md","articles":[]},{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"path":"redux/6-state.md","ref":"./redux/6-state.md","articles":[]},{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"redux/1-state.md","mtime":"2017-07-18T04:56:20.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-20T14:19:16.415Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"next":{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]},"previous":{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"redux/6-state.md","mtime":"2017-07-20T13:41:51.211Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-20T14:19:16.415Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
