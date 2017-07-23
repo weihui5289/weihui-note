@@ -296,6 +296,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.4" data-path="../git book/1-book.html">
+            
+                <a href="../git book/1-book.html">
+            
+                    
+                    第三章:如何使用git book去实现网页笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -350,20 +363,25 @@
 <p>2.&#x5177;&#x4F53;&#x7684;&#x4F7F;&#x7528;&#x7684;&#x4E3B;&#x8981;&#x6D89;&#x53CA;&#x4E24;&#x4E2A;&#x63A5;&#x53E3; Provider &#x548C; connect &#xFF0C;&#x7136;&#x540E;&#x5728;&#x6211;&#x4EEC;&#x5E73;&#x65F6;&#x5BFC;&#x51FA;&#x7EC4;&#x4EF6;&#x7684;&#x5730;&#x65B9;&#x6362;&#x6210;</p>
 <pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> connect(mapStateToProps)(PostBody=&#x300B;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684;&#x540D;&#x5B57;);
 </code></pre>
-<p>3.&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;
--connect &#x8FDE;&#x63A5; store &#x548C;&#x7EC4;&#x4EF6;
--mapStateToProps&#xFF1A;&#x628A; store &#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF08;&#x4E00;&#x90E8;&#x5206;&#xFF09;&#x6620;&#x5C04;&#x4E3A;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684; props
-map &#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x6620;&#x5C04;&#x201D;
--State &#x6307;&#x7684;&#x662F; store &#x72B6;&#x6001;&#x6811;&#xFF08; State Tree &#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; store &#x7684;&#x5B9E;&#x9645;&#x6570;&#x636E;
--Porps &#x5C31;&#x662F;&#x5C5E;&#x6027;
--Store &#x4E2D;&#x6570;&#x636E;&#x5F88;&#x591A;&#xFF0C;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x7684;&#x53EA;&#x662F;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x90A3;&#x4E48;&#x9009;&#x53D6;&#x5DE5;&#x4F5C;&#x662F;&#x5728; mapStateToProps &#x4E2D;&#x5B8C;&#x6210;&#x7684;</p>
+<p>3.&#x8BE6;&#x7EC6;&#x89E3;&#x91CA;</p>
+<ul>
+<li>connect &#x8FDE;&#x63A5; store &#x548C;&#x7EC4;&#x4EF6;</li>
+<li>mapStateToProps&#xFF1A;&#x628A; store &#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF08;&#x4E00;&#x90E8;&#x5206;&#xFF09;&#x6620;&#x5C04;&#x4E3A;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684; props
+map &#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x6620;&#x5C04;&#x201D;</li>
+<li>State &#x6307;&#x7684;&#x662F; store &#x72B6;&#x6001;&#x6811;&#xFF08; State Tree &#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F; store &#x7684;&#x5B9E;&#x9645;&#x6570;&#x636E;</li>
+<li>Porps &#x5C31;&#x662F;&#x5C5E;&#x6027;</li>
+<li>Store &#x4E2D;&#x6570;&#x636E;&#x5F88;&#x591A;&#xFF0C;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x7684;&#x53EA;&#x662F;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x90A3;&#x4E48;&#x9009;&#x53D6;&#x5DE5;&#x4F5C;&#x662F;&#x5728; mapStateToProps &#x4E2D;&#x5B8C;&#x6210;&#x7684;</li>
+</ul>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> mapStateToProps = (state) =&gt; ({
   comments: state
 });
+  comments:&#x81EA;&#x5DF1;&#x7684;&#x5199;&#x7684;&#x53D8;&#x91CF;,&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x547D;&#x540D;
+  state,&#x662F;index &#x4E24;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x7EC4;&#x4EF6;&#x5408;&#x5E76;&#x7684;&#x5728;&#x4E00;&#x8D77;&#x7684;
 </code></pre>
 <p>4.connect &#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#xFF0C;PostBody &#x4E4B;&#x4E2D;&#x5C31;&#x591A;&#x4E86;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF1A;this.props.comments</p>
 <p>5.&#x53EA;&#x6709; connect &#x4E0D;&#x80FD;&#x5DE5;&#x4F5C;&#xFF08;&#x56E0;&#x4E3A;&#x627E;&#x4E0D;&#x7740; store&#xFF09;&#xFF0C;&#x56E0;&#x4E3A; connect &#x7684;&#x751F;&#x6548;&#x8303;&#x56F4;&#x662F;&#x7531; <provider> &#x7EC4;&#x4EF6;&#x51B3;&#x5B9A;&#x7684;( Provider &#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#xFF0C;&#x53EA;&#x6709;&#x88AB; Provider &#x5305;&#x62EC;&#x8D77;&#x6765;&#x7684;&#x7EC4;&#x4EF6;&#x4E2D;&#x624D;&#x80FD;&#x627E;&#x5F97;&#x7740; store&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x624D;&#x80FD;&#x4F7F;&#x7528; connect)&#xFF0C;&#x6240;&#x4EE5;&#x4EE3;&#x7801;&#x4E2D;&#x8FD8;&#x9700;&#x8981;&#x6DFB;&#x52A0;</provider></p>
-<pre><code class="lang-js">&lt;Provider store={store}&gt;
+<pre><code class="lang-js">&#x5728;App js&#x5F53;&#x4E2D;&#x5199;&#x5165;
+&lt;Provider store={store}&gt;
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;top  clearfix&quot;</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">PostBody</span> /&gt;</span>
@@ -374,6 +392,87 @@ map &#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x6620;&#x5C04;&#x201D;
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span>
 </span></code></pre>
+<p>&#x6700;&#x7EC8;&#x4FEE;&#x6539;&#x4E4B;&#x540E;&#x7684;commments.js &#x4EE3;&#x7801;   likes&#x7684;&#x4EE3;&#x7801;  likes.js</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> comments=
+[
+  {
+    content:<span class="hljs-string">&quot;&#x7B2C;&#x4E00;&#x6761;&quot;</span>,
+    postId:<span class="hljs-string">&quot;1&quot;</span>
+  },
+  {
+    content:<span class="hljs-string">&quot;666&quot;</span>,
+    postId:<span class="hljs-string">&quot;1&quot;</span>
+  },
+  {
+    content:<span class="hljs-string">&quot;&#x7B2C;&#x4E8C;&#x6761;&quot;</span>,
+    postId:<span class="hljs-string">&quot;2&quot;</span>
+  }
+]
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">commentReducer</span>(<span class="hljs-params">state=comments,action</span>)</span>{
+  <span class="hljs-keyword">switch</span>(action.type){
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ADD_COMMENT&quot;</span>:
+      <span class="hljs-keyword">return</span>[...state,{content:action.tianjia,postId:action.Id}]
+      <span class="hljs-keyword">default</span>:<span class="hljs-keyword">return</span> state
+  }
+
+}
+</code></pre>
+<hr>
+<pre><code class="lang-js">action.Id,action.tianjia Id,tianjia&#x662F;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x7684;&#x540D;&#x5B57;
+&#x8DF3;&#x8F6C;CommentBox
+
+  handleSubmit=(e)=&gt;{
+    e.preventDefault()
+    <span class="hljs-comment">// console.log(this.value.value)</span>
+    <span class="hljs-keyword">let</span> newComment=<span class="hljs-keyword">this</span>.value.value
+
+    store.dispatch({type:<span class="hljs-string">&quot;ADD_COMMENT&quot;</span>,tianjia:newComment,Id:<span class="hljs-keyword">this</span>.props.postId})
+    <span class="hljs-built_in">console</span>.log(store.getState())
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.props.comments)
+    <span class="hljs-comment">// this.value.value=&quot;&quot;</span>
+    <span class="hljs-keyword">this</span>.word.reset()
+  }
+  render() {
+    <span class="hljs-keyword">let</span> { postId, comments } = <span class="hljs-keyword">this</span>.props
+    <span class="hljs-keyword">let</span> myComments= comments.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">item</span>)</span>{
+        <span class="hljs-keyword">return</span> postId===item.postId
+    }
+   )
+</code></pre>
+<h5 id="storedispach--&#x662F;&#x6539;&#x53D8;state-&#x76F8;&#x5F53;&#x4E0E;es6-&#x4E2D;&#x7684;thissetstate">-store.dispach  &#x662F;&#x6539;&#x53D8;state ,&#x76F8;&#x5F53;&#x4E0E;es6 &#x4E2D;&#x7684;this.setState({})</h5>
+<p>&#x70B9;&#x8D5E; likes.js</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> likesPost=[
+  {
+    postId:<span class="hljs-string">&quot;1&quot;</span>,
+    likes:<span class="hljs-number">100</span>,
+    title:<span class="hljs-string">&quot;Git &#x6280;&#x5DE7;&quot;</span>
+  },
+  {
+    postId:<span class="hljs-string">&quot;2&quot;</span>,
+    likes:<span class="hljs-number">200</span>,
+    title:<span class="hljs-string">&quot;&#x5B66;&#x4E60; Redux&quot;</span>
+  }
+]
+
+
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">likeReducer</span>(<span class="hljs-params">state=likesPost,action</span>)</span>{
+  <span class="hljs-keyword">switch</span>(action.type){
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;INCREMENT_LIKE&quot;</span>:
+    <span class="hljs-keyword">let</span> stateCopy=state.slice()
+    <span class="hljs-comment">// console.log(stateCopy)</span>
+    stateCopy.map(item=&gt;{
+      <span class="hljs-keyword">if</span>(item.postId===action.Id){
+       item.likes++
+       <span class="hljs-keyword">return</span> item
+      }
+         <span class="hljs-keyword">return</span> item
+    })
+      <span class="hljs-keyword">return</span>  stateCopy
+      <span class="hljs-keyword">default</span>:<span class="hljs-keyword">return</span> state
+  }
+}
+</code></pre>
 
                                 
                                 </section>
@@ -417,7 +516,7 @@ map &#x7684;&#x610F;&#x601D;&#x662F;&#x201C;&#x6620;&#x5C04;&#x201D;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"next":{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]},"previous":{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"redux/6-state.md","mtime":"2017-07-20T13:41:51.211Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-20T14:19:16.415Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"next":{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]},"previous":{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"redux/6-state.md","mtime":"2017-07-22T07:29:23.005Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-23T11:18:44.580Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
