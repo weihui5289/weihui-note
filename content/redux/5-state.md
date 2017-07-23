@@ -4,8 +4,8 @@
 
 把所有的数据都存放到 Store 中，然后所有的组件都订阅 Store 的数据。那么数据就有了 Single Source of Truth （唯一可信数据源）。这样的好处就是：
 
--第一，各个组件都统一读写同一个数据，组件间通信变得不成问题了
--第二，就是数据统一存放，代码比较不容易写乱
+* 第一，各个组件都统一读写同一个数据，组件间通信变得不成问题了
+* 第二，就是数据统一存放，代码比较不容易写乱
 
 ## 创建 Store ？创建个store.js
 ```js
@@ -33,6 +33,17 @@ let store = createStore(comments)
 export default store
 ```
 
+
+### 最终的代码
+
+```js
+import {createStore} from "redux"
+import rootReducer from "./reducers/index"
+
+let store = createStore(rootReducer)
+export default store
+
+```
 
 
 reducer ，这一项是必须填写的

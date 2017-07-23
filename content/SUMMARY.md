@@ -16,3 +16,5 @@
     * [第五节:redux store 数据](./redux/5-state.md)
     * [第六节:connect 实现store的数据](./redux/6-state.md)
     * [第七节:实现多数据的点赞](./redux/7-state.md)
+
+* [第三章:如何使用git book去实现网页笔记](./git book/1-book.md)

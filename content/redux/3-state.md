@@ -26,9 +26,9 @@ this.state = {
 ### 3.发布评论
 发布评论的过程：
 
--点一下 submit 这个按钮，浏览器发成的 event （事件）就是 “表单提交（ form submit ）”
--事件触发之后，我们如何来写对应的”事件处理函数“一般会叫 handleXXX ，意思是”处理XXX事件“
--如何把”事件处理函数“跟事件本身绑定起来呢？纯 html 中用 action 属性来处理。但是有了 React 就不用 action 。用 onSubmit （ on 的意思就是”当发生“ )
+* 点一下 submit 这个按钮，浏览器发成的 event （事件）就是 “表单提交（ form submit ）”
+* 事件触发之后，我们如何来写对应的”事件处理函数“一般会叫 handleXXX ，意思是”处理XXX事件“
+* 如何把”事件处理函数“跟事件本身绑定起来呢？纯 html 中用 action 属性来处理。但是有了 React 就不用 action 。用 onSubmit （ on 的意思就是”当发生“ )
 
 
 ```js
