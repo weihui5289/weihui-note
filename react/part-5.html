@@ -309,6 +309,38 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5" data-path="../vue/1-state.html">
+            
+                <a href="../vue/1-state.html">
+            
+                    
+                    第四章：vue框架的学习和使用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../vue/2-state.html">
+            
+                <a href="../vue/2-state.html">
+            
+                    
+                    第一节:VUE-CLI(命令行)建立状态 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
@@ -453,7 +485,70 @@ array.forEach(v = &gt; <span class="hljs-built_in">console</span>.log(v));
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${name}</span> was <span class="hljs-subst">${age}</span>`</span>)
 </code></pre>
 <h3 id="5default--rest--spread">5.Default + Rest + Spread</h3>
-<p>```js</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params">name</span>)</span>{
+    <span class="hljs-comment">//&#x4F20;&#x7EDF;&#x7684;&#x6307;&#x5B9A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x7684;&#x65B9;&#x5F0F;</span>
+    <span class="hljs-keyword">var</span> name=name||<span class="hljs-string">&apos;dude&apos;</span>;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Hello &apos;</span>+name);
+}
+<span class="hljs-comment">//&#x8FD0;&#x7528;ES6&#x7684;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello2</span>(<span class="hljs-params">name=&apos;dude&apos;</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>`</span>);
+}
+sayHello();<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;Hello dude</span>
+sayHello(<span class="hljs-string">&apos;zf&apos;</span>);<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;Hello zf</span>
+sayHello2();<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;Hello dude</span>
+sayHello2(<span class="hljs-string">&apos;zf&apos;</span>);<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;Hello zf</span>
+</code></pre>
+<p>&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x662F;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528;&#x547D;&#x540D;&#x53C2;&#x6570;&#x540C;&#x65F6;&#x63A5;&#x6536;&#x4E0D;&#x5B9A;&#x6570;&#x91CF;&#x7684;&#x672A;&#x547D;&#x540D;&#x53C2;&#x6570;&#x3002;&#x8FD9;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x8BED;&#x6CD5;&#x7CD6;&#xFF0C;&#x5728;&#x4EE5;&#x524D;&#x7684;JavaScript&#x4EE3;&#x7801;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; arguments &#x53D8;&#x91CF;&#x6765;&#x8FBE;&#x5230;&#x8FD9;&#x4E00;&#x76EE;&#x7684;&#x3002;</p>
+<p><strong>&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x683C;&#x5F0F;&#x662F;&#x4E09;&#x4E2A;&#x53E5;&#x70B9;&#x540E;&#x8DDF;&#x4EE3;&#x8868;&#x6240;&#x6709;&#x4E0D;&#x5B9A;&#x53C2;&#x6570;&#x7684;&#x53D8;&#x91CF;&#x540D;&#x3002;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x2026;x&#x4EE3;&#x8868;&#x4E86;&#x6240;&#x6709;&#x4F20;&#x5165;add&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x3002;</strong></p>
+<pre><code class="lang-js"><span class="hljs-comment">//&#x5C06;&#x6240;&#x6709;&#x53C2;&#x6570;&#x76F8;&#x52A0;&#x7684;&#x51FD;&#x6570;</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...x</span>)</span>{
+    <span class="hljs-keyword">return</span> x.reduce((m,n)=&gt;m+n);
+}
+<span class="hljs-comment">//&#x4F20;&#x9012;&#x4EFB;&#x610F;&#x4E2A;&#x6570;&#x7684;&#x53C2;&#x6570;</span>
+<span class="hljs-built_in">console</span>.log(add(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>));<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;6</span>
+<span class="hljs-built_in">console</span>.log(add(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>));<span class="hljs-comment">//&#x8F93;&#x51FA;&#xFF1A;15</span>
+</code></pre>
+<p>&#x56DE;&#x60F3;&#x4E4B;&#x524D;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6A21;&#x62DF;&#x4E00;&#x4E2A;js&#x7684;&#x7C7B;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x91C7;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x52A0;&#x539F;&#x578B;&#x7684;&#x65B9;&#x5F0F;</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Point</span>(<span class="hljs-params">x,y</span>)</span>{
+  <span class="hljs-keyword">this</span>.x = x;
+  <span class="hljs-keyword">this</span>.y = y;
+}
+
+Point.prototype.toString = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;(&apos;</span> + <span class="hljs-keyword">this</span>.x + <span class="hljs-string">&apos;, &apos;</span> + <span class="hljs-keyword">this</span>.y + <span class="hljs-string">&apos;)&apos;</span>;
+}
+<span class="hljs-keyword">var</span> point = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">6</span>,<span class="hljs-number">3</span>);
+<span class="hljs-built_in">console</span>.log(point.toString());<span class="hljs-comment">//(6,3)</span>
+</code></pre>
+<p>//&#x7C7B;&#x7684;&#x5B9A;&#x4E49;
+class Animal {
+    //ES6&#x4E2D;&#x65B0;&#x578B;&#x6784;&#x9020;&#x5668;
+    constructor(name) {
+        this.name = name;
+    }
+    //&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;
+    sayName() {
+        console.log(&apos;My name is &apos;+this.name);
+    }
+}
+//&#x7C7B;&#x7684;&#x7EE7;&#x627F;
+class Programmer extends Animal {
+  constructor(name) {
+      //&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x7236;&#x7C7B;&#x6784;&#x9020;&#x5668;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;
+    super(name);
+  }
+  program() {
+    console.log(&quot;I&apos;m coding...&quot;);
+  }
+}</p>
+<p>//&#x6D4B;&#x8BD5;&#x6211;&#x4EEC;&#x7684;&#x7C7B;
+var animal=new Animal(&apos;dummy&apos;),
+zf=new Programmer(&apos;zf&apos;);</p>
+<p>animal.sayName();//&#x8F93;&#x51FA; &#x2018;My name is dummy&#x2019;
+zf.sayName();//&#x8F93;&#x51FA; &#x2018;My name is zf&#x2019;
+zf.program();//&#x8F93;&#x51FA; &#x2018;I&apos;m coding...&#x2019;
+//&#x5B9A;&#x4E49;&#x201C;&#x7C7B;&#x201D;&#x7684;&#x65B9;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x524D;&#x9762;&#x4E0D;&#x9700;&#x8981;&#x52A0;&#x4E0A;function&#x8FD9;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x76F4;&#x63A5;&#x628A;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x653E;&#x8FDB;&#x53BB;&#x4E86;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x65B9;&#x6CD5;&#x4E4B;&#x95F4;&#x4E0D;&#x9700;&#x8981;&#x9017;&#x53F7;&#x5206;&#x9694;&#xFF0C;&#x52A0;&#x4E86;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
 
                                 
                                 </section>
@@ -497,7 +592,7 @@ array.forEach(v = &gt; <span class="hljs-built_in">console</span>.log(v));
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第五节:ES6快速入门","level":"1.2.5","depth":2,"next":{"title":"第二章:redux","level":"1.3","depth":1,"path":"redux/index.md","ref":"./redux/index.md","articles":[{"title":"第一节:状态值的学习","level":"1.3.1","depth":2,"path":"redux/1-state.md","ref":"./redux/1-state.md","articles":[]},{"title":"第二节:Redux 入门教程","level":"1.3.2","depth":2,"path":"redux/2-state.md","ref":"./redux/2-state.md","articles":[]},{"title":"第三节:state 在内部的使用","level":"1.3.3","depth":2,"path":"redux/3-state.md","ref":"./redux/3-state.md","articles":[]},{"title":"第四节:不用 Redux 如何实现组件间通信","level":"1.3.4","depth":2,"path":"redux/4-state.md","ref":"./redux/4-state.md","articles":[]},{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"path":"redux/6-state.md","ref":"./redux/6-state.md","articles":[]},{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]}]},"previous":{"title":"第四节:webpack基础","level":"1.2.4","depth":2,"path":"react/part-4.md","ref":"./react/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"react/part-5.md","mtime":"2017-07-21T14:17:56.465Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-23T11:18:44.580Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第五节:ES6快速入门","level":"1.2.5","depth":2,"next":{"title":"第二章:redux","level":"1.3","depth":1,"path":"redux/index.md","ref":"./redux/index.md","articles":[{"title":"第一节:状态值的学习","level":"1.3.1","depth":2,"path":"redux/1-state.md","ref":"./redux/1-state.md","articles":[]},{"title":"第二节:Redux 入门教程","level":"1.3.2","depth":2,"path":"redux/2-state.md","ref":"./redux/2-state.md","articles":[]},{"title":"第三节:state 在内部的使用","level":"1.3.3","depth":2,"path":"redux/3-state.md","ref":"./redux/3-state.md","articles":[]},{"title":"第四节:不用 Redux 如何实现组件间通信","level":"1.3.4","depth":2,"path":"redux/4-state.md","ref":"./redux/4-state.md","articles":[]},{"title":"第五节:redux store 数据","level":"1.3.5","depth":2,"path":"redux/5-state.md","ref":"./redux/5-state.md","articles":[]},{"title":"第六节:connect 实现store的数据","level":"1.3.6","depth":2,"path":"redux/6-state.md","ref":"./redux/6-state.md","articles":[]},{"title":"第七节:实现多数据的点赞","level":"1.3.7","depth":2,"path":"redux/7-state.md","ref":"./redux/7-state.md","articles":[]}]},"previous":{"title":"第四节:webpack基础","level":"1.2.4","depth":2,"path":"react/part-4.md","ref":"./react/part-4.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"react/part-5.md","mtime":"2017-07-23T13:19:03.317Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-08-13T11:01:07.448Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
