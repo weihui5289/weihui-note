@@ -124,3 +124,78 @@ console.log(`${name} was ${age}`)
 ### 5.Default + Rest + Spread
 
 ```js
+function sayHello(name){
+    //传统的指定默认参数的方式
+    var name=name||'dude';
+    console.log('Hello '+name);
+}
+//运用ES6的默认参数
+function sayHello2(name='dude'){
+    console.log(`Hello ${name}`);
+}
+sayHello();//输出：Hello dude
+sayHello('zf');//输出：Hello zf
+sayHello2();//输出：Hello dude
+sayHello2('zf');//输出：Hello zf
+```
+
+不定参数是在函数中使用命名参数同时接收不定数量的未命名参数。这只是一种语法糖，在以前的JavaScript代码中我们可以通过 arguments 变量来达到这一目的。
+
+
+**不定参数的格式是三个句点后跟代表所有不定参数的变量名。比如下面这个例子中，…x代表了所有传入add函数的参数。**
+```js
+//将所有参数相加的函数
+function add(...x){
+    return x.reduce((m,n)=>m+n);
+}
+//传递任意个数的参数
+console.log(add(1,2,3));//输出：6
+console.log(add(1,2,3,4,5));//输出：15
+
+```
+
+
+
+回想之前，如果我们需要模拟一个js的类，一般会采用构造函数加原型的方式
+```js
+function Point(x,y){
+  this.x = x;
+  this.y = y;
+}
+
+Point.prototype.toString = function () {
+  return '(' + this.x + ', ' + this.y + ')';
+}
+var point = new Point(6,3);
+console.log(point.toString());//(6,3)
+```
+//类的定义
+class Animal {
+    //ES6中新型构造器
+    constructor(name) {
+        this.name = name;
+    }
+    //实例方法
+    sayName() {
+        console.log('My name is '+this.name);
+    }
+}
+//类的继承
+class Programmer extends Animal {
+  constructor(name) {
+      //直接调用父类构造器进行初始化
+    super(name);
+  }
+  program() {
+    console.log("I'm coding...");
+  }
+}
+
+//测试我们的类
+var animal=new Animal('dummy'),
+zf=new Programmer('zf');
+
+animal.sayName();//输出 ‘My name is dummy’
+zf.sayName();//输出 ‘My name is zf’
+zf.program();//输出 ‘I'm coding...’
+//定义“类”的方法的时候，前面不需要加上function这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
