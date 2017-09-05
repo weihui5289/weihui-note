@@ -63,3 +63,8 @@ Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被�
 
 #### 6.传入 setState 函数的第二个参数的作用是什么？
 传入 setState 函数的第二个参数的作用是什么？
+
+#### 7. react与redux 原理工作流程
+1.首先用redux管理数据  2.然后用Provider组件向各个组件传递store 实现数据通信
+3.通过this.props.dispatch将数据传递到redux
+4.然后用action改变接收数据的内容
