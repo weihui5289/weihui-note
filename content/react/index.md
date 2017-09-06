@@ -68,3 +68,10 @@ Keys 是 React 用于追踪哪些列表中元素被修改、被添加或者被�
 1.首先用redux管理数据  2.然后用Provider组件向各个组件传递store 实现数据通信
 3.通过this.props.dispatch将数据传递到redux
 4.然后用action改变接收数据的内容
+
+* 官方解释
+Provider组件接受redux的store作为props，然后通过context往下传。
+
+二、connect函数收到Provider传出的store，然后接受三个参数mapStateToProps，mapDispatchToProps和组件，并将state和actionCreator以props传入组件，这时组件就可以调用actionCreator函数来触发reducer函数返回新的state，connect监听到state变化调用setState更新组件并将新的state传入组件。
+
+connect可以写的非常简洁，mapStateToProps，mapDispatchToProps只不过是传入的回调函数，connect函数在必要的时候会调用它们，名字不是固定的，甚至可以不写名字。
