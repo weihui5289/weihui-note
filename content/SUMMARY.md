@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [第一章:react](./react/index.md) 
+* [第一章:react](./react/index.md)
 
   * [第一节:状态值的学习](./react/part-1.md)
   * [第二节:Node安装配置](./react/part-2.md)
@@ -28,3 +28,4 @@
   * [第七节：请求 API](./vue/8-state.md)
 * [第五章：ES6(ECMAScript)](./es6/1-state.md)
   * [第一节:ES6快速入门](./es6/part-5.md)
+* [第六章：javaScript](./js/1-state.md)
