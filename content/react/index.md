@@ -95,10 +95,32 @@ this：可选，执行会掉时候，this的指向。
 
 二、区别
 
-2.1、forEach()返回值是undefined，不可以链式调用。
+1、forEach()返回值是undefined，不可以链式调用。
 
-2.2、map()返回一个新数组，原数组不会改变。
+2、map()返回一个新数组，原数组不会改变。
 
-2.3、没有办法终止或者跳出forEach()循环，除非抛出异常，所以想执行一个数组是否满足什么条件，返回布尔值，可以用一般的for循环实现，或者用Array.every()或者Array.some();
+3、没有办法终止或者跳出forEach()循环，除非抛出异常，所以想执行一个数组是否满足什么条件，返回布尔值，可以用一般的for循环实现，或者用Array.every()或者Array.some();
 
-2.4、$.each()方法规定为每个匹配元素规定运行的函数，可以返回 false 可用于及早停止循环。
+4、$.each()方法规定为每个匹配元素规定运行的函数，可以返回 false 可用于及早停止循环。
+
+
+```js
+var ary = [12,23,24,42,1];
+var res = ary.forEach(function (item,index,input) {
+     input[index] = item*10;
+})
+console.log(res);//-->undefined;
+console.log(ary);//-->会对原来的数组产生改变；
+```
+
+map:和forEach非常相似，都是用来遍历数组中的每一项值的，用来遍历数组中的每一项；
+区别：map的回调函数中支持return返回值；return的是啥，相当于把数组中的这一项变为啥（并不影响原来的数组，只是相当于把原数组克隆一份，把克隆的这一份的数组中的对应项改变了）；
+不管是forEach还是map 都支持第二个参数值，第二个参数的意思是把匿名回调函数中的this进行修改。
+```js
+var ary = [12,23,24,42,1];
+var res = ary.map(function (item,index,input) {
+     return item*10;
+})
+console.log(res);//-->[120,230,240,420,10];
+console.log(ary);//-->[12,23,24,42,1]；
+```
