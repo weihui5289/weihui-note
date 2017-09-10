@@ -124,3 +124,17 @@ var res = ary.map(function (item,index,input) {
 console.log(res);//-->[120,230,240,420,10];
 console.log(ary);//-->[12,23,24,42,1]；
 ```
+
+
+#### 5.react总结
+React单向数据流：
+
+React是单向数据流，数据主要从父节点传递到子节点（通过props）。
+
+如果顶层（父级）的某个props改变了，React会重渲染所有的子节点。
+
+### props
+props是property的缩写，可以理解为HTML标签的attribute。
+
+不可以使用this.props直接修改props，因为props是只读的，props是用于整个组件树中传递数据和配置。
+在当前组件访问props，使用this.props。
