@@ -78,6 +78,75 @@ connect可以写的非常简洁，mapStateToProps，mapDispatchToProps只不过�
 
 
 #### 8.请描述React组件加载时生命周期执行顺序，组件更新时生命周期执行顺序
+在ES6中，一个React组件是用一个class来表示的（具体可以参考官方文档），如下：
+```js
+// 定义一个TodoList的React组件，通过继承React.Component来实现
+class TodoList extends React.Component {
+  ...
+}
+```
+
+* 这几个生命周期相关的函数有：
+```js
+constructor(props, context)
+```
+
+* 构造函数，在创建组件的时候调用一次。
+```js
+void componentWillMount()
+```
+
+* 在组件挂载之前调用一次。如果在这个函数里面调用setState，本次的render函数可以看到更新后的state，并且只渲染一次。
+```js
+void componentDidMount()
+```
+
+* 在组件挂载之后调用一次。这个时候，子主键也都挂载好了，可以在这里使用refs。
+```js
+void componentWillReceiveProps(nextProps)
+```
+* props是父组件传递给子组件的。父组件发生render的时候子组件就会调用componentWillReceiveProps（不管props有没有更新，也不管父子组件之间有没有数据交换）。
+
+```js
+bool shouldComponentUpdate(nextProps, nextState)
+```
+
+* 组件挂载之后，每次调用setState后都会调用shouldComponentUpdate判断是否需要重新渲染组件。默认返回true，需要重新render。在比较复杂的应用里，有一些数据的改变并不影响界面展示，可以在这里做判断，优化渲染效率。
+```js
+void componentWillUpdate(nextProps, nextState)
+```
+
+* shouldComponentUpdate返回true或者调用forceUpdate之后，componentWillUpdate会被调用。
+```js
+void componentDidUpdate()
+```
+
+* 除了首次render之后调用componentDidMount，其它render结束之后都是调用componentDidUpdate。
+
+componentWillMount、componentDidMount和componentWillUpdate、componentDidUpdate可以对应起来。区别在于，前者只有在挂载的时候会被调用；而后者在以后的每次更新渲染之后都会被调用。
+
+```js
+ReactElement render()
+```
+* render是一个React组件所必不可少的核心函数（上面的其它函数都不是必须的）。记住，不要在render里面修改state。
+```js
+void componentWillUnmount()
+```
+
+#### * 更新方式 *
+在react中，触发render的有4条路径。
+
+以下假设shouldComponentUpdate都是按照默认返回true的方式。
+
+首次渲染Initial Render
+调用this.setState （并不是一次setState会触发一次render，React可能会合并操作，再一次性进行render）
+父组件发生更新（一般就是props发生改变，但是就算props没有改变或者父子组件之间没有数据交换也会触发render）
+调用this.forceUpdate
+
+
+
+
+
 
 #### 9.ForEach 和 Map区别
 * 相同点：
@@ -137,4 +206,4 @@ React是单向数据流，数据主要从父节点传递到子节点（通过pro
 props是property的缩写，可以理解为HTML标签的attribute。
 
 不可以使用this.props直接修改props，因为props是只读的，props是用于整个组件树中传递数据和配置。
-在当前组件访问props，使用this.props。
+在当前组件访问props，使用this.props。+
